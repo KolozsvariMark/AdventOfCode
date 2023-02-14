@@ -1,20 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using AdventOfCode;
+using AdventOfCode.Utils;
 using System.Reflection;
 
 var solutionTypes = GetSolutionTypes();
 
-foreach (var type in solutionTypes)
-{
-    var solution = Activator.CreateInstance(type) as ISolution ?? throw new NullReferenceException();
+var solutions = solutionTypes.Select(type => Activator.CreateInstance(type) as ISolution ?? throw new NullReferenceException());
 
-    var result = Solver.Solve(solution).ToList();
-
-    Console.WriteLine(type.FullName);
-    Console.WriteLine(result[0]);
-    Console.WriteLine(result[1]);
-}
+Solver.SolveAll(solutions);
 
 static IEnumerable<Type> GetSolutionTypes()
 {

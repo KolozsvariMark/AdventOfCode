@@ -1,13 +1,23 @@
-﻿using AdventOfCode.Utils;
-
-namespace AdventOfCode;
+﻿namespace AdventOfCode.Utils;
 
 public static class Solver
 {
-    public static IEnumerable<string> Solve(ISolution solution)
+    public static void SolveAll(IEnumerable<ISolution> solutions)
     {
-        var input = File.ReadAllText(GetFullInputFilePath(solution));
+        if (!solutions.Any())
+        {
+            Console.WriteLine("Nothing to solve!");
+        }
 
+        foreach(var solution in solutions)
+        {
+            var input = File.ReadAllText(GetFullInputFilePath(solution));
+            Solve(solution, input);
+        }
+    }
+
+    public static IEnumerable<string> Solve(ISolution solution, string input)
+    {
         var partOneResult = solution.PartOne(input) ?? "Part one is unsolved!";
         var partTwoResult = solution.PartTwo(input) ?? "Part two is unsolved!";
 
