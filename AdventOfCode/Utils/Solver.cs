@@ -13,13 +13,17 @@ public static class Solver
         {
             var input = File.ReadAllText(GetFullInputFilePath(solution));
             var results = Solve(solution, input).ToList();
-            
+
+            var problemAttribute = AttributeUtil.GetProblemAttribute(solution);
+            Console.WriteLine($"{problemAttribute.GetProblemYear()} {problemAttribute.GetProblemDay()} {problemAttribute.name}");
+
             Console.WriteLine(results[0]);
             Console.WriteLine(results[1]);
+            Console.WriteLine();
         }
     }
 
-    public static IEnumerable<string> Solve(ISolution solution, string input)
+    public static IEnumerable<object> Solve(ISolution solution, string input)
     {
         var partOneResult = solution.PartOne(input) ?? "Part one is unsolved!";
         var partTwoResult = solution.PartTwo(input) ?? "Part two is unsolved!";

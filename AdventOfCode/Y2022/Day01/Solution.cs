@@ -6,14 +6,14 @@ namespace AdventOfCode.Y2022.Day01;
 [Problem("Calorie Counting", 2022, 1)]
 public class Solution : ISolution
 {
-    public string? PartOne(string input)
+    public object? PartOne(string input)
     {
-        return GetSumOfCaloriesPerElf(input).First().ToString();
+        return GetSumOfCaloriesPerElf(input).First();
     }
 
-    public string? PartTwo(string input)
+    public object? PartTwo(string input)
     {
-        return GetSumOfCaloriesPerElf(input).Take(3).Sum().ToString();
+        return GetSumOfCaloriesPerElf(input).Take(3).Sum();
     }
 
     private static IEnumerable<int> GetSumOfCaloriesPerElf(string input)

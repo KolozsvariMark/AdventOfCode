@@ -2,6 +2,6 @@
 
 public interface ISolution
 {
-    string? PartOne(string input);
-    string? PartTwo(string input);
+    object? PartOne(string input);
+    object? PartTwo(string input);
 }
