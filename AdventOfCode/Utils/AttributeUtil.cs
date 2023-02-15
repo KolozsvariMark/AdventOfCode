@@ -2,11 +2,9 @@
 
 namespace AdventOfCode.Utils;
 
-public class AttributeUtil
+public static class AttributeUtil
 {
-    private ProblemAttribute ProblemAttribute { get; set; } = null!;
-
-    public AttributeUtil(ISolution solution)
+    public static ProblemAttribute GetProblemAttribute(ISolution solution)
     {
         ProblemAttribute? problemAttribute =
             Attribute.GetCustomAttribute(solution.GetType(), typeof(ProblemAttribute)) as ProblemAttribute;
@@ -16,21 +14,21 @@ public class AttributeUtil
             throw new NullReferenceException("The attribute was not found");
         }
 
-        ProblemAttribute = problemAttribute;
+        return problemAttribute;
     }
 
-    public string GetProblemName()
+    public static string GetProblemName(this ProblemAttribute problemAttribute)
     {
-        return ProblemAttribute.name;
+        return problemAttribute.name;
     }
 
-    public string GetProblemYear()
+    public static string GetProblemYear(this ProblemAttribute problemAttribute)
     {
-        return $"Y{ProblemAttribute.year}";
+        return $"Y{problemAttribute.year}";
     }
 
-    public string GetProblemDay()
+    public static string GetProblemDay(this ProblemAttribute problemAttribute)
     {
-        return $"Day{ProblemAttribute.day:00}";
+        return $"Day{problemAttribute.day:00}";
     }
 }

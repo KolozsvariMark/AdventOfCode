@@ -12,7 +12,10 @@ public static class Solver
         foreach(var solution in solutions)
         {
             var input = File.ReadAllText(GetFullInputFilePath(solution));
-            Solve(solution, input);
+            var results = Solve(solution, input).ToList();
+            
+            Console.WriteLine(results[0]);
+            Console.WriteLine(results[1]);
         }
     }
 
@@ -35,8 +38,8 @@ public static class Solver
 
     public static string GetFilePath(ISolution solution)
     {
-        var attributeUtil = new AttributeUtil(solution);
-        var paths = new List<string>() { attributeUtil.GetProblemYear(), attributeUtil.GetProblemDay(), "input.txt" };
+        var problemAttribute = AttributeUtil.GetProblemAttribute(solution);
+        var paths = new List<string>() { problemAttribute.GetProblemYear(), problemAttribute.GetProblemDay(), "input.txt" };
 
         return paths.Aggregate(Path.Combine);
     }
