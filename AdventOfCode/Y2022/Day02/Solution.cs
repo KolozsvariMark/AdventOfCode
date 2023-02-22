@@ -1,7 +1,6 @@
 ﻿using AdventOfCode.Attributes;
 using AdventOfCode.Utils;
 
-
 namespace AdventOfCode.Y2022.Day02;
 
 [Problem("Rock Paper Scissors", 2022, 2)]
